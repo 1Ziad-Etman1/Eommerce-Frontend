@@ -47,9 +47,9 @@ const cartSlice = createSlice({
 			const findItem = state.products.find((item) => item.id === id);
 			if(findItem){
 				findItem.quantity++;
-				findItem.totalPrice += findItem.price;
+				findItem.totalPrice += findItem.price.toFixed(2);
 				state.totalQuantity++;
-				state.totalPrice += findItem.price;
+				state.totalPrice += findItem.price.toFixed(2);
 			}
 		},
 		decreaseQuantity(state, action){
@@ -58,11 +58,11 @@ const cartSlice = createSlice({
 			if(findItem){
 				if(findItem.quantity > 1){
 					findItem.quantity--;
-					findItem.totalPrice -= findItem.price;
+					findItem.totalPrice -= findItem.price.toFixed(2);
 					state.totalQuantity--;
-					state.totalPrice -= findItem.price;
+					state.totalPrice -= findItem.price.toFixed(2);
 				} else {
-					state.totalPrice -= findItem.totalPrice;
+					state.totalPrice -= findItem.totalPrice.toFixed(2);
 					state.totalQuantity -= findItem.quantity;
 					state.products = state.products.filter(
 						(item) => item.id !== id
